@@ -1,0 +1,37 @@
+const dotenv = require('dotenv');
+dotenv.config();
+const express = require('express');
+const app = express();
+app.use(express.json());
+const db = require('./config/database');
+const {initializeDatabase}  = require("../Database/InitDB");
+initializeDatabase();
+const authRoutes = require('../src/Routes/authroutes');
+const bookingRoutes = require('./Routes/bookingRoutes');
+const guestRoutes = require('./Routes/guestRoutes');
+app.use('/api/guests', guestRoutes);
+app.use('/api/bookings', bookingRoutes);
+app.use('/api/auth', authRoutes);
+const roomroutes=require("./Routes/roomRoutes");
+app.use('/api',roomroutes);
+const housekeepingRoutes = require('./Routes/houseRoutes');
+app.use('/api/housekeeping', housekeepingRoutes);
+
+const restaurantRoutes = require('./Routes/restuarantRoutes');
+app.use('/api/restaurant', restaurantRoutes);
+const billingRoutes=require('./Routes/billingRoutes');
+app.use('/api',billingRoutes);
+const inventoryRoutes = require('./Routes/inventoryRoutes');
+app.use('/api/inventory', inventoryRoutes);
+const reportRoutes = require('./Routes/reportsRoutes');
+app.use('/api/reports', reportRoutes);
+const amenitiesRoutes = require('./Routes/aminitiesRoutes');
+app.use('/api/amenities', amenitiesRoutes);
+const requestRoutes=require('./Routes/requestRoutes');
+app.use('/api',requestRoutes);
+const staffRoutes = require('./Routes/staffRoutes');
+app.use('/api', staffRoutes);
+const PORT = process.env.PORT;
+app.listen(PORT, () => {
+  console.log(`🚀 Server running on port ${PORT}`);
+});

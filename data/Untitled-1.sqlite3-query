@@ -1,0 +1,4 @@
+-- database: ./hotel-management.db
+
+INSERT INTO rooms (roomNumber, type, floor, status, pricePerNight, maxOccupancy)
+VALUES ('101', 'Deluxe', 2, 'occupied', 5000, 2);
